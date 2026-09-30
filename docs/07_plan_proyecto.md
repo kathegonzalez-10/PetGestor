@@ -11,8 +11,8 @@
 7.  **Pruebas y Manual de Usuario:** Verificación del sistema y elaboración del manual.
 
 ## Cronograma - Diagrama de Gantt
-
-
+### Diagrama visual
+![Diagrama de Gantt](images/DiagramadeGantt.png)
 
 **Inicio del proyecto:** 18 de Septiembre de 2026.
 **Entrega 1:** 30 de Septiembre de 2026.
