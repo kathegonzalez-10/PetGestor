@@ -12,7 +12,7 @@
 
 ## Cronograma - Diagrama de Gantt
 ### Diagrama visual
-(![Diagrama de Gantt](images/gantt_petgestor.png))
+(![Diagrama de Gantt](images/DiagramadeGantt.jpeg‎))
 
 **Inicio del proyecto:** 18 de Septiembre de 2026.
 **Entrega 1:** 30 de Septiembre de 2026.
