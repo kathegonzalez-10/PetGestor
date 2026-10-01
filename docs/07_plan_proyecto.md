@@ -1,33 +1,76 @@
-# 7. Plan de Proyecto - PetGestor
+# 7. Plan de proyecto
 
-## Actividades del Proyecto
+## 7.1 Descripción
 
-1.  **Definición y Planeación:** Inicio del proyecto PetGestor.
-2.  **Diseño de la Estructura de Datos:** Definición de los campos para cada registro de las PQRS.
-3.  **Desarrollo del Módulo de Validaciones:** Implementación de validaciones para nombre, documento, teléfono, correo y fechas.
-4.  **Desarrollo de Gestión de Documentos:** Creación de la lógica para manejar los 4 archivos planos (Peticion.txt, Queja.txt, Reclamo.txt, Sugerencia.txt) con ID auto-incremental independiente.
-5.  **Desarrollo de Funcionalidades Principales:** Menú en consola, registro de PQRS, impresión de radicado de 120 caracteres con marco ASCII y consulta de estado general.
-6.  **Desarrollo de Estadísticas y Dashboard:** Cálculo de estadísticas para Power BI.
-7.  **Pruebas y Manual de Usuario:** Verificación del sistema y elaboración del manual.
+El desarrollo de PetGestor se organizará mediante actividades relacionadas con el análisis de requisitos, diseño, programación, pruebas, documentación y preparación de la entrega.
 
-## Cronograma - Diagrama de Gantt
-### Diagrama visual
-(![Diagrama de Gantt](images/DiagramadeGantt.jpeg‎))
+El proyecto será desarrollado utilizando Python, archivos planos y una estructura modular organizada en las carpetas establecidas para el proyecto.
 
-**Inicio del proyecto:** 18 de Septiembre de 2026.
-**Entrega 1:** 30 de Septiembre de 2026.
-**Sustentación 1:** 1 de Octubre de 2026.
-**Entrega 2 Final:** 18 de Noviembre de 2026.
+## 7.2 Actividades del proyecto
 
-## Presupuesto
+| No. | Actividad | Descripción |
+|---|---|---|
+| 1 | Análisis del problema | Identificación de las necesidades y requisitos establecidos para el sistema PQRS. |
+| 2 | Definición de requisitos | Organización de los requisitos funcionales y no funcionales. |
+| 3 | Diseño de la estructura | Creación de las carpetas, archivos y estructura general del proyecto. |
+| 4 | Módulo de autenticación | Desarrollo del Login, validación de usuarios y control de intentos. |
+| 5 | Gestión de archivos | Desarrollo de las funciones para lectura y escritura de archivos planos. |
+| 6 | Registro de PQRS | Desarrollo del registro de peticiones, quejas, reclamos y sugerencias. |
+| 7 | Validación de datos | Implementación de las validaciones de nombres, correos, teléfonos y fechas. |
+| 8 | Gestión de estados | Implementación de los estados Registrada, En proceso y Solucionada. |
+| 9 | Consulta y radicado | Desarrollo de las funciones de consulta y visualización de los registros. |
+| 10 | Estadísticas | Desarrollo de los cálculos y reportes requeridos. |
+| 11 | Pruebas | Verificación del funcionamiento del sistema y corrección de errores. |
+| 12 | Documentación | Elaboración de la documentación y manual de usuario. |
+| 13 | Organización del repositorio | Organización de código, documentación, imágenes y archivos de datos en GitHub. |
+| 14 | Preparación de entrega | Revisión final del proyecto y preparación de los entregables. |
 
-- **Responsable del proyecto:** Katherine Gonzalez.
-- **Tiempo total invertido:** 50 horas de trabajo individual.
-- **Distribución del tiempo:** 10 horas para planeación y documentación, 25 horas para desarrollo en Python, 15 horas para pruebas, reportes y Power BI.
-- **Valor del tiempo:** 1 SMLV 2026 proporcional a las 50 horas de práctica profesional individual.
+## 7.3 Cronograma
 
-## Plan de Versionado del Software PetGestor
+El siguiente cronograma representa la planificación propuesta para el desarrollo del proyecto.
 
-- **v0.1 - 18/09/2026 al 30/09/2026:** Versión inicial individual con definición del proyecto PetGestor, reporte de visión, especificación de requisitos y plan de proyecto.
-- **v0.5 - Octubre 2026:** Implementación de validaciones, manejo de archivos planos, registro de PQRS, generación de radicado y consulta de estados.
-- **v1.0 - 18/11/2026:** Versión final estable con estadísticas completas, manual de usuario y dashboard en Power BI.
+| Actividad | Sep. 1-7 | Sep. 8-14 | Sep. 15-21 | Sep. 22-30 | Oct. 1-15 | Oct. 16-31 | Nov. 1-10 | Nov. 11-18 |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Análisis del problema | X | | | | | | | |
+| Definición de requisitos | X | X | | | | | | |
+| Diseño de estructura | | X | X | | | | | |
+| Módulo de autenticación | | | X | X | | | | |
+| Gestión de archivos | | | | X | X | | | |
+| Registro de PQRS | | | | X | X | X | | |
+| Validación de datos | | | | | X | X | | |
+| Gestión de estados | | | | | X | X | | |
+| Consulta y radicado | | | | | | X | X | |
+| Estadísticas | | | | | | X | X | |
+| Pruebas | | | | | | X | X | X |
+| Documentación | | | X | X | X | X | X | X |
+| Organización del repositorio | | X | X | X | X | X | X | X |
+| Preparación de entrega | | | | X | | | X | X |
+
+## 7.4 Diagrama de Gantt
+
+```mermaid
+gantt
+    title Plan de proyecto PetGestor
+    dateFormat  YYYY-MM-DD
+    axisFormat  %d/%m
+
+    section Análisis
+    Análisis del problema       :2026-09-01, 7d
+    Definición de requisitos    :2026-09-08, 7d
+
+    section Diseño y desarrollo
+    Diseño de estructura        :2026-09-15, 7d
+    Módulo de autenticación     :2026-09-22, 9d
+    Gestión de archivos         :2026-10-01, 7d
+    Registro de PQRS            :2026-10-08, 14d
+    Validación de datos         :2026-10-16, 10d
+    Gestión de estados          :2026-10-20, 10d
+    Consulta y radicado         :2026-10-26, 8d
+    Estadísticas                :2026-11-01, 7d
+
+    section Pruebas y documentación
+    Pruebas                     :2026-11-05, 8d
+    Documentación               :2026-09-15, 60d
+    Organización del repositorio :2026-09-15, 60d
+    Preparación de entrega      :2026-11-13, 6d
+
