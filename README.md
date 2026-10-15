@@ -1,6 +1,6 @@
 # PetGestor
 ---
-(images/PetGestor Pet Care Logo(1).png)
+![Logo](../images/PetgestorPetCareLogo(1).png)
 
 ---
 ## Sistema de gestión de PQRS para la atención de perros y gatos
