@@ -1,10 +1,10 @@
 8. Plan de versionado
 
-El plan de versionado describe los avances realizados durante el desarrollo del software PetGestor,
-registrando las versiones y los procedimientos relevantes desde la fecha de inicio del proyecto, 
-el 18 de septiembre de 2026, hasta la fecha de entrega final, el 24 de noviembre de 2026.
+El plan de versionado describe los avances realizados durante el desarrollo del software PetGestor, registrando las versiones y los procedimientos relevantes desde la fecha de inicio del proyecto, el 18 de septiembre de 2026, hasta la fecha de entrega final, el 24 de noviembre de 2026.
 
 Para llevar este registro, se asignó un número consecutivo a cada versión y se calculó el tiempo transcurrido en días desde el inicio del proyecto.
+
+Registro de versiones
 
 Versión| Fecha| Día desde el inicio| Descripción del avance
 0.1| 18/09/2026| 0| Inicio del proyecto PetGestor. Organización inicial, identificación de los requerimientos y definición de las funcionalidades principales del sistema.
@@ -16,8 +16,6 @@ Versión| Fecha| Día desde el inicio| Descripción del avance
 0.7| 17/11/2026| 60| Incorporación y publicación de los módulos principales del sistema en la carpeta "src" del repositorio de GitHub.
 0.8| 24/11/2026| 67| Versión prevista para la entrega final del proyecto. Comprende la integración de Pandas y Matplotlib para el procesamiento de datos y la generación de gráficos, las pruebas finales y la revisión de la documentación.
 
+Conclusión
 
-
-En conclusión, el plan de versionado permite identificar la evolución de PetGestor, 
-desde su organización inicial hasta la versión prevista para la entrega final, registrando los principales procedimientos 
-y avances realizados durante su desarrollo.
+El plan de versionado permite identificar la evolución de PetGestor, desde su organización inicial hasta la versión prevista para la entrega final, registrando los principales procedimientos y avances realizados durante su desarrollo.
