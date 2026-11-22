@@ -30,6 +30,7 @@ Para iniciar PetGestor, se debe abrir una terminal en la carpeta principal del p
 ```bash
 python src/main.py
 
+```
 ## 3. Inicio de sesión
 
 Al ejecutar PetGestor, el sistema muestra la pantalla de autenticación, en la cual el usuario debe ingresar sus credenciales para acceder a las funcionalidades del programa.
