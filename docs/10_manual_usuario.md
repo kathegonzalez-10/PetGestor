@@ -169,19 +169,36 @@ Para acceder a esta funcionalidad, se deben seguir estos pasos:
 5. Regresar al menú principal siguiendo las indicaciones del sistema.
 
 Las estadísticas permiten obtener un resumen de los registros y facilitar el análisis de la información almacenada en el sistema.
+### 10.2. Generación de gráficos estadísticos
 
-## 11. Información del usuario
+Además de presentar los resultados en la terminal, PetGestor utiliza las librerías Pandas y Matplotlib para procesar la información y generar cuatro gráficos estadísticos:
 
-Esta opción permite consultar la información correspondiente al usuario que ha iniciado sesión en PetGestor.
+- **PQRS por tipo de solicitud:** representa la cantidad de peticiones, quejas, reclamos y sugerencias registradas.
+- **Distribución de PQRS por tipo de mascota:** muestra la participación de los diferentes tipos de mascotas registrados.
+- **PQRS por canal de recepción:** permite comparar la cantidad de solicitudes recibidas por cada canal.
+- **PQRS por estado:** presenta la distribución de las solicitudes según su estado actual.
 
-Para acceder a esta funcionalidad, se deben seguir estos pasos:
+### 10.3. Ubicación de los gráficos
 
-1. Seleccionar la opción **7. Ver información del usuario** en el menú principal.
-2. Esperar a que el sistema consulte los datos del usuario autenticado.
-3. Revisar la información presentada en pantalla.
-4. Regresar al menú principal siguiendo las indicaciones del programa.
+Una vez seleccionada la opción de estadísticas, el programa genera automáticamente las imágenes y las almacena en la siguiente ruta:
 
-Esta funcionalidad permite visualizar los datos asociados a la cuenta con la que se está utilizando el sistema.
+`images/graficos/`
+
+En esta carpeta se encuentran los siguientes archivos:
+
+- `pqrs_por_tipo.png`
+- `pqrs_por_mascota.png`
+- `pqrs_por_canal.png`
+- `pqrs_por_estado.png`
+
+Para consultar los gráficos, el usuario debe:
+
+1. Abrir la carpeta principal del proyecto PetGestor.
+2. Ingresar a la carpeta `images`.
+3. Abrir la carpeta `graficos`.
+4. Seleccionar la imagen que desea visualizar.
+
+Los gráficos pueden abrirse con cualquier programa compatible con imágenes PNG.
 
 ## 11. Información del usuario
 
