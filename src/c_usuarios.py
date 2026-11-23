@@ -1,11 +1,13 @@
 import os
 import time
 
+
 RUTA_USUARIOS = os.path.join(
     os.path.dirname(os.path.dirname(__file__)),
     "data",
     "Usuarios.txt"
 )
+
 
 class c_usuarios:
     """
@@ -13,9 +15,16 @@ class c_usuarios:
     autorizados para ingresar al sistema PetGestor.
     """
 
-    def __init__(self, usuario, nombre_completo, correo_institucional,
-                 contrasena, rol, estado):
-        # Datos básicos, completos y organizados del usuario.
+    def __init__(
+        self,
+        usuario,
+        nombre_completo,
+        correo_institucional,
+        contrasena,
+        rol,
+        estado
+    ):
+        # Datos básicos del usuario.
         self.usuario = usuario
         self.nombre_completo = nombre_completo
         self.correo_institucional = correo_institucional
@@ -25,9 +34,10 @@ class c_usuarios:
 
     def mostrar_datos(self):
         """
-        Método sencillo que permite consultar los datos
-        principales del usuario autenticado.
+        Permite consultar los datos principales
+        del usuario autenticado.
         """
+
         print("\n" + "=" * 50)
         print("              USUARIO AUTENTICADO")
         print("=" * 50)
@@ -41,8 +51,8 @@ class c_usuarios:
 
 class GestorUsuarios:
     """
-    Clase administradora, funcional y centralizada para leer
-    los usuarios y realizar el proceso de autenticación.
+    Clase administradora encargada de leer los usuarios
+    y realizar el proceso de autenticación.
     """
 
     def __init__(self, ruta_archivo):
@@ -51,7 +61,7 @@ class GestorUsuarios:
 
     def cargar_usuarios(self):
         """
-        Lee el archivo Usuarios.txt y convierte cada registro
+        Lee Usuarios.txt y convierte cada registro
         en un objeto de la clase c_usuarios.
         """
 
@@ -61,11 +71,19 @@ class GestorUsuarios:
             print("ERROR: No se encontró el archivo Usuarios.txt.")
             return False
 
-        with open(self.ruta_archivo, "r", encoding="utf-8") as archivo:
+        with open(
+            self.ruta_archivo,
+            "r",
+            encoding="utf-8"
+        ) as archivo:
             lineas = archivo.readlines()
 
-        # Comprensión de listas: elimina líneas vacías y espacios.
-        lineas = [linea.strip() for linea in lineas if linea.strip()]
+        # Eliminar líneas vacías y espacios.
+        lineas = [
+            linea.strip()
+            for linea in lineas
+            if linea.strip()
+        ]
 
         # La primera línea corresponde a los encabezados.
         datos = lineas[1:]
@@ -80,7 +98,8 @@ class GestorUsuarios:
                     campos[2],
                     campos[3],
                     campos[4],
-                    campos[5])
+                    campos[5]
+                )
 
                 self.usuarios.append(usuario)
 
@@ -88,24 +107,25 @@ class GestorUsuarios:
 
     def buscar_usuario(self, identificador, contrasena):
         """
-        Busca un usuario utilizando su nombre de usuario
-        o su correo institucional y verifica la contraseña.
+        Busca un usuario mediante su nombre de usuario
+        o correo institucional y verifica su contraseña.
         """
 
         for usuario in self.usuarios:
 
-            # Permite ingresar con usuario O correo institucional.
-          
-                identificador_correcto = (
+            # Permite ingresar con usuario o correo institucional.
+            identificador_correcto = (
                 usuario.usuario == identificador
                 or usuario.correo_institucional == identificador
             )
 
-            contrasena_correcta = usuario.contrasena == contrasena
+            contrasena_correcta = (
+                usuario.contrasena == contrasena
+            )
 
             if identificador_correcto and contrasena_correcta:
 
-                # Solo se permite ingresar si el usuario está activo.
+                # Solo permite ingresar si el usuario está activo.
                 if usuario.estado.lower() == "activo":
                     return usuario
 
@@ -148,7 +168,10 @@ class GestorUsuarios:
             if usuario_autenticado is not None:
 
                 print("\n¡Inicio de sesión exitoso!")
-                print(f"Bienvenido/a, {usuario_autenticado.nombre_completo}.")
+                print(
+                    f"Bienvenido/a, "
+                    f"{usuario_autenticado.nombre_completo}."
+                )
                 print(f"Rol: {usuario_autenticado.rol}")
 
                 return usuario_autenticado
@@ -157,36 +180,46 @@ class GestorUsuarios:
             intentos_restantes = maximo_intentos - intentos
 
             if intentos < maximo_intentos:
+
                 print("\nCredenciales incorrectas.")
                 print(
                     f"Intentos restantes: {intentos_restantes}"
                 )
 
             else:
-                print("\nSe alcanzó el máximo de 3 intentos fallidos.")
+
+                print(
+                    "\nSe alcanzó el máximo de 3 intentos fallidos."
+                )
                 print(
                     f"El sistema se bloqueará durante "
                     f"{tiempo_bloqueo} segundos."
                 )
 
                 for segundos in range(
-                    tiempo_bloqueo, 0, -1
+                    tiempo_bloqueo,
+                    0,
+                    -1
                 ):
                     print(
                         f"\rPantalla bloqueada. "
                         f"Espere {segundos} segundos...",
                         end=""
                     )
+
                     time.sleep(1)
 
                 print("\n\nBloqueo finalizado.")
-                print("Debe iniciar nuevamente el proceso de Login.")
+                print(
+                    "Debe iniciar nuevamente el proceso de Login."
+                )
 
                 return None
 
         return None
 
-   if __name__ == "__main__":
+
+if __name__ == "__main__":
 
     gestor = GestorUsuarios(RUTA_USUARIOS)
 

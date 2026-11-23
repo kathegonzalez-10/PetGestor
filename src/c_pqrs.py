@@ -26,7 +26,8 @@ class c_pqrs:
         campus_relacionado,
         fecha_maxima_respuesta,
         estado_peticion,
-        usuario_registro
+        usuario_registro,
+        fecha_respuesta=""
     ):
         # Identificador único, consecutivo y numérico del registro.
         self.id = identificador
@@ -52,9 +53,11 @@ class c_pqrs:
         # Información temporal, operativa y de seguimiento.
         self.fecha_maxima_respuesta = fecha_maxima_respuesta
         self.estado_peticion = estado_peticion
+        self.fecha_respuesta = fecha_respuesta
 
         # Usuario responsable, autorizado y autenticado que registra.
         self.usuario_registro = usuario_registro
+        
 
     def convertir_a_diccionario(self):
         """
@@ -80,7 +83,8 @@ class c_pqrs:
             "campus_relacionado": self.campus_relacionado,
             "fecha_maxima_respuesta": self.fecha_maxima_respuesta,
             "estado_peticion": self.estado_peticion,
-            "usuario_registro": self.usuario_registro
+            "usuario_registro": self.usuario_registro,
+            "fecha_respuesta": self.fecha_respuesta
         }
 
     def mostrar_resumen(self):

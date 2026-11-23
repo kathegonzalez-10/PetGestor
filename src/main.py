@@ -488,10 +488,8 @@ def consultar_pqrs_por_id():
 
 def cambiar_estado_pqrs():
     """
-    Permite cambiar el estado de una PQRS.
-
-    Flujo permitido:
-    Registrada -> En proceso -> Solucionada
+    Permite cambiar el estado de una PQRS y registrar
+    o eliminar su fecha de respuesta.
     """
 
     archivos = c_archivos(RUTA_DATA)
@@ -520,7 +518,6 @@ def cambiar_estado_pqrs():
     )
 
     if registro is None:
-
         print("\nNo se encontró la PQRS.")
         return
 
@@ -529,83 +526,82 @@ def cambiar_estado_pqrs():
         "Registrada"
     )
 
-    print(
-        f"\nEstado actual: {estado_actual}"
-    )
+    print(f"\nEstado actual: {estado_actual}")
 
     if estado_actual == "Registrada":
-
         nuevo_estado = "En proceso"
 
     elif estado_actual == "En proceso":
-
         nuevo_estado = "Solucionada"
 
-    else:
+    elif estado_actual == "Solucionada":
+        nuevo_estado = "En proceso"
 
-        print(
-            "\nLa PQRS ya está solucionada."
-        )
+    else:
+        print("\nEstado no reconocido.")
         return
 
-    print(
-        f"Nuevo estado: {nuevo_estado}"
-    )
+    print(f"Nuevo estado: {nuevo_estado}")
 
     confirmar = input(
         "¿Desea realizar el cambio? (S/N): "
     ).strip().upper()
 
     if confirmar != "S":
-
         print("\nOperación cancelada.")
         return
 
-    ruta = archivos.obtener_ruta(
-        tipo_solicitud
-    )
+    ruta = archivos.obtener_ruta(tipo_solicitud)
 
-    with open(
-        ruta,
-        "r",
-        encoding="utf-8"
-    ) as archivo:
-
+    with open(ruta, "r", encoding="utf-8") as archivo:
         lineas = archivo.readlines()
 
-    encabezado = lineas[0]
-
-    nuevas_lineas = [encabezado]
+    nuevas_lineas = [lineas[0]]
+    fecha_respuesta_registrada = ""
 
     for linea in lineas[1:]:
 
         campos = linea.rstrip("\n").split("|")
 
-        if len(campos) > 16 and campos[0] == identificador:
+        while len(campos) < 19:
+            campos.append("")
+
+        if campos[0] == identificador:
 
             campos[16] = nuevo_estado
 
+            if nuevo_estado == "Solucionada":
+
+                campos[18] = datetime.now().strftime(
+                    "%Y-%m-%d %H:%M:%S"
+                )
+
+            else:
+
+                campos[18] = ""
+
             linea = "|".join(campos) + "\n"
+            fecha_respuesta_registrada = campos[18]
 
         nuevas_lineas.append(linea)
 
-    with open(
-        ruta,
-        "w",
-        encoding="utf-8"
-    ) as archivo:
-
+    with open(ruta, "w", encoding="utf-8") as archivo:
         archivo.writelines(nuevas_lineas)
 
     print("\nEstado actualizado correctamente.")
-    print(
-        f"Estado anterior: {estado_actual}"
-    )
-    print(
-        f"Nuevo estado: {nuevo_estado}"
-    )
+    print(f"Estado anterior: {estado_actual}")
+    print(f"Nuevo estado: {nuevo_estado}")
 
+    if nuevo_estado == "Solucionada":
 
+        print(
+            "Fecha de respuesta: "
+            + fecha_respuesta_registrada
+        )
+
+    else:
+
+        print("Fecha de respuesta eliminada.")
 # ============================================================
 # GENERAR RADICADO
 # ============================================================

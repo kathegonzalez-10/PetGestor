@@ -12,7 +12,7 @@ class c_archivos:
         "tipo_telefono|telefono_contacto|correo_electronico|direccion|"
         "tipo_solicitud|fecha_radicacion|canal_recepcion|asunto_titulo|"
         "descripcion_detallada|tipo_mascota|campus_relacionado|"
-        "fecha_maxima_respuesta|estado_peticion|usuario_registro"
+        "fecha_maxima_respuesta|estado_peticion|usuario_registro|""fecha_respuesta"
     )
 
     def __init__(self, carpeta_data):
@@ -21,6 +21,64 @@ class c_archivos:
         """
 
         self.carpeta_data = carpeta_data
+        self.actualizar_estructura()
+
+    def actualizar_estructura(self):
+        """
+        Agrega el campo fecha_respuesta a los archivos existentes
+        sin eliminar la información registrada.
+        """
+
+        nombres_archivos = [
+            "Peticion.txt",
+            "Queja.txt",
+            "Reclamo.txt",
+            "Sugerencia.txt"
+        ]
+
+        for nombre in nombres_archivos:
+
+            ruta = os.path.join(
+                self.carpeta_data,
+                nombre
+            )
+
+            if not os.path.exists(ruta):
+                continue
+
+            with open(ruta, "r", encoding="utf-8") as archivo:
+                lineas = archivo.readlines()
+
+            if not lineas:
+                continue
+
+            encabezados = lineas[0].strip().split("|")
+
+            if "fecha_respuesta" in encabezados:
+                continue
+
+            encabezados.append("fecha_respuesta")
+
+            nuevas_lineas = [
+                "|".join(encabezados) + "\n"
+            ]
+
+            for linea in lineas[1:]:
+
+                if not linea.strip():
+                    continue
+
+                campos = linea.rstrip("\n").split("|")
+
+                while len(campos) < len(encabezados):
+                    campos.append("")
+
+                nuevas_lineas.append(
+                    "|".join(campos) + "\n"
+                )
+
+            with open(ruta, "w", encoding="utf-8") as archivo:
+                archivo.writelines(nuevas_lineas)    
 
     def obtener_ruta(self, tipo_solicitud):
         """
@@ -126,7 +184,8 @@ class c_archivos:
                 str(registro.get("campus_relacionado", "")),
                 str(registro.get("fecha_maxima_respuesta", "")),
                 str(registro.get("estado_peticion", "Registrada")),
-                str(registro.get("usuario_registro", ""))
+                str(registro.get("usuario_registro", "")),
+                str(registro.get("fecha_respuesta",""))
             ]
 
             archivo.write("|".join(valores) + "\n")

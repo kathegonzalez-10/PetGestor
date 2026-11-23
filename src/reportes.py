@@ -1,4 +1,9 @@
+import os
 from datetime import datetime
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
 from archivos import c_archivos
 
 
@@ -390,6 +395,158 @@ class c_reportes:
         return round(
             sum(tiempos) / len(tiempos)
         )
+    # ========================================================
+    # GENERAR GRÁFICOS CON PANDAS Y MATPLOTLIB
+    # ========================================================
+
+    def generar_graficos(self):
+        """
+        Genera gráficos estadísticos utilizando Pandas
+        y Matplotlib a partir de las PQRS registradas.
+        """
+
+        if not self.registros:
+            print("\nNo hay registros para generar gráficos.")
+            return
+
+        # Crear DataFrame con Pandas
+        datos = pd.DataFrame(self.registros)
+
+        # Crear carpeta para almacenar los gráficos
+        ruta_proyecto = os.path.dirname(
+            os.path.dirname(os.path.abspath(__file__))
+        )
+
+        ruta_graficos = os.path.join(
+            ruta_proyecto,
+            "images",
+            "graficos"
+        )
+
+        os.makedirs(ruta_graficos, exist_ok=True)
+
+        # ----------------------------------------------------
+        # 1. PQRS POR TIPO DE SOLICITUD
+        # ----------------------------------------------------
+
+        if "tipo_solicitud" in datos.columns:
+
+            conteo = (
+                datos["tipo_solicitud"]
+                .fillna("No registrado")
+                .value_counts()
+            )
+
+            plt.figure(figsize=(8, 5))
+            conteo.plot(kind="bar")
+
+            plt.title("PQRS por tipo de solicitud")
+            plt.xlabel("Tipo de solicitud")
+            plt.ylabel("Cantidad")
+            plt.xticks(rotation=0)
+            plt.tight_layout()
+
+            plt.savefig(
+                os.path.join(
+                    ruta_graficos,
+                    "pqrs_por_tipo.png"
+                )
+            )
+
+            plt.close()
+
+        # ----------------------------------------------------
+        # 2. PQRS POR TIPO DE MASCOTA
+        # ----------------------------------------------------
+
+        if "tipo_mascota" in datos.columns:
+
+            conteo = (
+                datos["tipo_mascota"]
+                .fillna("No registrado")
+                .value_counts()
+            )
+
+            plt.figure(figsize=(7, 7))
+            conteo.plot(
+                kind="pie",
+                autopct="%1.1f%%"
+            )
+
+            plt.title("Distribución de PQRS por mascota")
+            plt.ylabel("")
+            plt.tight_layout()
+
+            plt.savefig(
+                os.path.join(
+                    ruta_graficos,
+                    "pqrs_por_mascota.png"
+                )
+            )
+
+            plt.close()
+
+        # ----------------------------------------------------
+        # 3. PQRS POR CANAL DE RECEPCIÓN
+        # ----------------------------------------------------
+
+        if "canal_recepcion" in datos.columns:
+
+            conteo = (
+                datos["canal_recepcion"]
+                .fillna("No registrado")
+                .value_counts()
+            )
+
+            plt.figure(figsize=(8, 5))
+            conteo.plot(kind="barh")
+
+            plt.title("PQRS por canal de recepción")
+            plt.xlabel("Cantidad")
+            plt.ylabel("Canal")
+            plt.tight_layout()
+
+            plt.savefig(
+                os.path.join(
+                    ruta_graficos,
+                    "pqrs_por_canal.png"
+                )
+            )
+
+            plt.close()
+
+        # ----------------------------------------------------
+        # 4. PQRS POR ESTADO
+        # ----------------------------------------------------
+
+        if "estado_peticion" in datos.columns:
+
+            conteo = (
+                datos["estado_peticion"]
+                .fillna("No registrado")
+                .value_counts()
+            )
+
+            plt.figure(figsize=(8, 5))
+            conteo.plot(kind="bar")
+
+            plt.title("PQRS por estado")
+            plt.xlabel("Estado")
+            plt.ylabel("Cantidad")
+            plt.xticks(rotation=0)
+            plt.tight_layout()
+
+            plt.savefig(
+                os.path.join(
+                    ruta_graficos,
+                    "pqrs_por_estado.png"
+                )
+            )
+
+            plt.close()
+
+        print("\nGráficos estadísticos generados correctamente.")
+        print(f"Ubicación: {ruta_graficos}")
 
     # ========================================================
     # MOSTRAR REPORTES
@@ -612,3 +769,6 @@ class c_reportes:
             )
 
         print("\n" + "=" * 70)
+
+        # Generar gráficos estadísticos
+        self.generar_graficos()
