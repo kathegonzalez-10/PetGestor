@@ -17,8 +17,7 @@ Para llevar este registro, se asignó un número consecutivo a cada versión y s
 | 0.5 | 15/10/2026 | 27 | Finalización y ajustes de la documentación del proyecto, revisión de los archivos y organización de los componentes desarrollados. |
 | 0.6 | 16/10/2026 | 28 | Realización de pruebas funcionales del sistema, verificando el registro y consulta de PQRS, actualización de estados, generación de radicados, estadísticas e información de usuarios. |
 | 0.7 | 17/11/2026 | 60 | Incorporación y publicación de los módulos principales del sistema en la carpeta `src` del repositorio de GitHub. |
-| 0.8 | 24/11/2026 | 67 | Versión prevista para la entrega final del proyecto. Comprende la integración de Pandas y Matplotlib para el procesamiento de datos y la generación de gráficos, las pruebas finales y la revisión de la documentación. |
-
+| 0.8 | 23/11/2026 | 66 | Integración de las librerías Pandas y Matplotlib para el procesamiento de datos y la generación de cuatro gráficos estadísticos. Implementación y pruebas del registro de fechas de respuesta de las PQRS. Actualización del manual de usuario y publicación de los cambios en el repositorio de GitHub. |
 
 
 ## Conclusión
